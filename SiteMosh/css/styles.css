@@ -1,0 +1,1027 @@
+:root {
+  --color-primary: #2584ff;
+  --color-secondary: #00d9ff;
+  --color-accent: #ff3400;
+  --color-headings: #1b0760;
+  --color-body: #918ca4;
+  --color-body-darker: #5c5577;
+  --color-border: #ccc;
+  --border-radius: 30px;
+}
+/* on a defini notre color palette */
+/* Typographie */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+html {
+  /* 62.5% of 16 px = 10 px */
+  font-size: 62.5%;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--color-body);
+  color: var(--color-headings);
+  font-size: 2.4rem;
+  line-height: 1.5; /* 1.5 the current font size pour donner de lespace entre les lignes */
+}
+
+h1 {
+  font-size: /* pas 70px */ 7rem; /* means 7O pixels */
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 3rem;
+  /* margin-bottom:  1rem; */ /* vaut 10 pixels */
+}
+
+p {
+  margin-top: 0; /* pour que le margin de mon h3 soit prit en compte */
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-headings);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+@media screen and (min-width: 1024 px) {
+  body {
+    font-size: 1.8rem;
+  }
+  h1 {
+    font-size: 8rem;
+  }
+  h2 {
+    font-size: 4rem;
+  }
+  h3 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+.link-arrow {
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.link-arrow::after {
+  content: "-->"; /* pour ecrire du contenu après un element */
+  margin-left: 5px;
+  transition: margin 0.15s;
+}
+
+.link-arrow:hover::after {
+  margin-left: 10px; /* donne un effet de mouvement a la fleche */
+}
+
+/* on ajoute une media queries pour highest screens */
+
+@media screen and (min-width: 1024px) {
+  /* on repete le code mais cest plus clair */
+  .link-arrow {
+    font-size: 1.5rem;
+  }
+}
+/* Badges */
+.badge {
+  border-radius: 20px; /* absolute valu car on ne veut pas que le radius soit dependant du font size */
+  padding: 0.5rem 2rem; /* verti hori */
+  font-weight: 600; /* je change de bold a 600 car le font family inter comprends tous les types et sa nalourdi pas le code de changer ou den rajouter*/
+  white-space: nowrap; /* this prevent a badge to wrap on an other line */
+}
+
+.badge--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.badge--secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.badge--small {
+  font-size: 1.6rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .badge {
+    font-size: 1.5rem;
+  }
+  .badge-small {
+    font-size: 1.2rem;
+  }
+}
+
+/* Lists */
+.list {
+  list-style: none; /* to get default list */
+  padding-left: 0;
+  color: var(--color-headings);
+  font-size: bold;
+}
+
+.list--inline .list__item  /* On utilise se pseudo selector pour ciblé les list item de cette liste precise */ {
+  /* on veut convertir chaque element to inline element */
+  display: inline-block; /* pour mettre les elements sur la meme ligne */
+  margin-right: 2rem;
+}
+
+.list--tick {
+  list-style-image: url(../Images/tick.svg);
+  padding-left: 3rem;
+}
+
+.list--tick .list__item {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .list--tick .list__item {
+    padding-left: 0;
+  }
+}
+
+/* Icons */
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.icon--small {
+  width: 30px;
+  height: 30px;
+}
+
+/* Object oriented principal */
+.icon--primary {
+  fill: var(--color-primary); /* color-pr + tab racourci */
+}
+
+.icon--white {
+  fill: #fff;
+}
+.icon-container {
+  background: gold;
+  width: 64px; /* on utilise une valeur absolu (px ) pour les icones car ils ne changent pas de taille sur les mobiles sur le site en question */
+  height: 64px;
+  border-radius: 100%;
+  /* display: inline-block; */ /*notre icone nest pas au milieu du background avec inline block donc on utilise inline-flex */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; /* maintenant cest au milieux mais le background color est trop grand */
+}
+
+.icon-container--accent {
+  background: var(--color-accent);
+}
+/* Buttons */
+.btn {
+  font-size: 1.8rem; /* valeur basique des buttons */
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2rem 4vw;
+  border: 0;
+  text-align: center;
+  outline: 0; /* jenleve l'outline bleu ici */
+  margin: 1rem 0;
+  border-radius: 40px;
+  cursor: pointer;
+  white-space: nowrap; /* pour que le texxt ne wrap pas sur lautre ligne quil ne depasse pas */
+}
+/* c'est ici que se fait le style du l icone dans le bouton et nous allons dire, dans le bouton , si on a un icone... la width de l'icone sera de 2rem ect... */
+
+.btn .icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  /* Mais la search glasses n'est pas aligné pareil que sur le modelle elle est en haut alors qu'on la veut un peut plus au milieux, donc on fait */
+  vertical-align: middle;
+}
+
+/* Separer les couleurs et les tailles */
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover {
+  /* background: #3affd; */
+  background: lighten(
+    primary,
+    10%
+  ); /* permet dilluminer soit avec darken dassombrir un element */
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.btn--secondary:hover {
+  background: #00c8eb;
+}
+.btn--accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn--accent:hover {
+  background: #ec3000;
+}
+
+/* Block Buttons */
+
+.btn--block {
+  width: 100%;
+  display: inline-block;
+}
+
+.btn--stretched {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+/* .btn--outline {
+  background: #fff;
+  color: var(--color-headings);
+  border: 2px solid var(--color-headings);
+
+  .btn--outline:hover{
+    background: var(--color-headings);
+    color: #fff;
+    */
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    font-size: 1.5rem;
+  }
+}
+
+/* Inputs */
+.input {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  color: var(--color-headings);
+  font-size: 2rem; /* Sorts les propriétés avec palette commands */
+  outline: 0; /* POUR SUPPRIMER L OUTLINE SUR LINPUT */
+  padding: 1.5rem 3.5rem;
+}
+
+::placeholder /* pour parameterais le placeholder */ {
+  color: #cdcbb7;
+}
+
+.input-group {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+}
+
+.input-group .input {
+  border: 0; /* on enleve la bordure de linput */
+  flex-grow: 1; /* pour que l'input grandisse avec la page et pour que les elements dans ma div ne se collent pas c'est a dire que mon Input grandis avec la page et laisse le bouton a la fin de la div*/
+  padding: 1.5rem /* vertical */ 1rem; /* Horizontal */ /* je reduis lespace entre l'icone et le texte */
+  width: 0; /* POUR que l'input text ne depasse pas de l'input field quand on diminue la page et pour que le bouton ne sorte pas du field; */
+}
+
+.input-group .btn {
+  margin: 4px; /* je mets un margin de 4 px pour pas que le margin depende du font-size */
+}
+
+@media screen and (min-width: 1024px) {
+  .input {
+    font-size: 1.5rem;
+    border-radius: var(--border-radius);
+  }
+}
+
+/* Cards */
+.card {
+  border-radius: 7px;
+  box-shadow: 0 0 20px 10px #f3f3f3;
+  overflow: hidden;
+}
+
+.card__header,
+.card__body {
+  padding: 2rem 3rem;
+}
+
+.card--primary .card__header {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.card--secondary .card__header {
+  background: var(--color-secondary);
+  color: #fff;
+}
+/* cest la en dessous que je modifie mes badge pour mon plans block */
+.card--primary .badge--primary {
+  background-color: #126de4;
+}
+
+.card--secondary .badge--secondary {
+  background-color: #02cdf1;
+}
+/* Plans */
+/* Ici sapplique la transition de leffet pour mes plans de mon plans block */
+.plan {
+  transition: transform 0.2s ease-out;
+}
+.plan__name {
+  color: #fff;
+  margin: 0;
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.plan__price {
+  font-size: 6rem;
+}
+
+.plan__billing-cycle {
+  font-size: 2.4rem;
+  font-weight: 300;
+  opacity: 0.8;
+  margin-right: 1rem;
+}
+
+.plan__description {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.plan .list__item {
+  margin-bottom: 2rem;
+}
+
+/* cest la en dessous que je modifie mon badge popular pour mon plans block */
+.plan--popular {
+  transform: scale(
+    1.1
+  ); /* je donne a mon plan( a ma carte ) popular une taille de 10% plus large que la normale */
+}
+
+.plan--popular .card__header {
+  position: relative;
+}
+
+.plan--popular .card__header::before {
+  content: url(../images/popular.svg);
+  width: 40px;
+  display: inline-block;
+  position: absolute;
+  top: -6px;
+  right: 5%;
+}
+/* c'est en dessous que je modifie mon plan hover pour mon plans block */
+.plan:hover {
+  transform: scale(
+    1.05
+  ); /* cela aggrandira mon plans quand je mettrais mon curseur dessus */
+}
+/* maintenant pour mon plans popular il devient au lieu de 10% plus gros quand il est hover il passe a 5% donc il diminu , donc creons une regle pour le hover sur le plan du milieux popular */
+
+.plan--popular:hover {
+  transform: scale(1.15);
+}
+/* puis allons en haut de notre plans section pour la transition de leffet sur tous mes plans */
+@media screen and (min-width: 1024px) {
+  .plan__name {
+    font-size: 1.4rem;
+  }
+
+  .plan__price {
+    font-size: 5rem;
+  }
+
+  .plan__billing-cycle {
+    font-size: 1.6rem;
+  }
+
+  .plan__description {
+    font-size: 1.7rem;
+  }
+}
+
+/* Media */
+
+.media {
+  display: flex;
+}
+
+.media__title {
+  margin-top: 0;
+}
+
+.media__body {
+  margin: 0 2rem; /* 2 rem horizontal */
+}
+
+.media__image {
+  margin-top: 1rem;
+}
+
+/* Quotes */
+
+.quote {
+  font-size: 3rem;
+  font-style: italic;
+  color: var(
+    --color-body-darker
+  ); /* jajoute une nouvelle couleur dans mon root files */
+  line-height: 1.3; /* mettre de lespace entre les lignes */
+}
+.quote__text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.quote__text::before {
+  content: open-quote; /* pour mettre des quotes sur notre texte */
+}
+.quote__text::after {
+  content: close-quote;
+}
+
+.media__body {
+  margin-top: 1rem;
+}
+
+.quote__author {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--color-headings);
+  margin-bottom: 0;
+}
+
+.quote__company {
+  /* on utilise quote__company ou quote__author comme autre classe dans les cas ou demain on veut enlever notre media class et faire autrement , on utilise donc une classe independante */
+  font-size: 2rem;
+  color: var(--color-body-darker);
+  font-weight: 900;
+  font-style: normal;
+  opacity: 0.4;
+}
+.quote__icon {
+  position: relative;
+  top: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .quote {
+    font-size: 2rem;
+  }
+
+  .quote__company {
+    font-size: 1.6rem;
+  }
+
+  .quote__author {
+    font-size: 2.4rem;
+  }
+}
+/* Grids */
+
+.grid {
+  display: grid;
+}
+
+/* media pour tablettes */
+
+@media screen and (min-width: 768px) {
+  .grid--1x2 {
+    grid-template-columns: 1fr 1fr; /* 1 fraction 1 fraction cest a dire divisé en deux on peut aussi ecrire repeat(2, 1fr); */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid--1x3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Testimonials */
+
+.testimonial {
+  padding: 3rem; /* j'applique un padding de 3 rem car la carte est decaler des bords */
+}
+
+.testimonial__image > img {
+  width: 100%; /* avec ca ma photo fait 100% de son parent du coup cest une colonne qui est de 50% de la page car il y a deux colonnes et elle restera dans ces dimenssions quand on agrandi ou retressi l'image */
+}
+
+.testimonial__image {
+  position: relative;
+}
+
+.testimonial__image > .icon-container {
+  position: absolute;
+  top: 3rem;
+  right: -32px;
+}
+
+@media screen and (min-width: 768px) {
+  .testimonial .quote,
+  .testimonial .quote__author /* je change le font size de ma quote et de mon quote author pour le voir bien a coté de ma photo testimonial */ {
+    font-size: 2.4rem; /* je change le font size pour les tablettes screens pour que mon blockquote se voit integralement a coté de ma photo */
+  }
+  /* j'ajoute le margin a mon blockquote pour qu'il soit decaler un peu de ma photo */
+  .testimonial .quote {
+    margin-left: 6rem;
+  }
+}
+
+/* Callouts */
+
+.callout {
+  padding: 4rem;
+  border-radius: 5px;
+}
+
+.callout--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.callout__heading {
+  color: #fff;
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+.callout .btn {
+  justify-self: center; /* gerer un element horizontalement */
+  align-self: center; /* gerer un element verticalement */
+} /* au lieu de mettre une propriété que pour cet élément , on recréer des propriétés dans les boutons */
+
+.callout__content {
+  text-align: center;
+}
+
+/* je fais une nouvelle media querie pour que dans ma laptop page , j'ai le texte aligné a gauche. et que mon bouton soit a gauche de sa div plus proche du texte */
+
+@media screen and (min-width: 768px) {
+  /* je veux maintenant que mon texte sur les ecrans etirés ne laisse pas despace libre dans l horizontalité */
+  .callout .grid--1x2 {
+    grid-template-columns: 1fr auto; /* dans cette propriété la valeur auto attribura que lespace necessaire au bouton , et laissera le reste a la premiere colonnes ( 1fr ) */
+  }
+  .callout__content {
+    text-align: left;
+  }
+  .callout .btn {
+    justify-self: start;
+    /* et je lui met un margin horizontal */
+    margin: 0 2rem;
+  }
+}
+
+/* Collapsibles */
+
+.collapsible__header {
+  display: flex;
+  justify-content: space-between; /* pour ecarter mon chevron et mon h2 */
+}
+
+.collapsible__heading {
+  color: white;
+  margin-top: 0;
+  font-size: 3rem; /* je reduit la taille des lettres de mon h2 */
+}
+
+.collapsible__chevron {
+  transform: rotate(-90deg); /* je fait pivoter mon icone sur la droite */
+  transition: transform 0.3s; /* donner un effet a la transformation */
+}
+
+.collapsible__content {
+  /* display: none; je vais donner un effet a lapparition de mon texte chose que je ne peux pas faire avec display */
+  max-height: 0; /* pour mettre le maximum de caractere a 0 et enlever loverflow pour cacher ce qui depasse */
+  overflow: hidden;
+  transition: /* max-height pour mettre toutes les propriétés je met all */ all
+    0.3s;
+  opacity: 0;
+}
+
+.collapsible--expanded .collapsible__chevron {
+  rotate: 0;
+}
+
+.collapsible--expanded .collapsible__content {
+  /* display: block; */
+  max-height: 100vh;
+  opacity: 1;
+}
+/* Blocks */
+.block {
+  --padding-vertical: 6rem;
+  padding: var(--padding-vertical) 2rem;
+}
+
+.block__header {
+  text-align: center;
+  margin-bottom: 4rem; /* c'est ici que nous avons augmenté le margin entre le header et le block temoignages ( testimonial ) */
+}
+
+.block__heading {
+  margin-top: 0;
+}
+
+.block--dark {
+  background: #000;
+  color: #7b858b;
+}
+
+.block--dark .block__heading {
+  color: #fff;
+}
+
+.block--skewed-right {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80%);
+}
+
+.block--skewed-left {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Navigation-Bar */
+
+.nav {
+  background: black;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  align-items: center; /* pour aligné les elements dans le sens vertical */
+}
+
+.nav__list {
+  width: 100%;
+  margin: 0;
+}
+
+.nav__item {
+  padding: 0.5rem 2rem; /* pour les decaler de ledge du container */
+  border-bottom: 1px solid #222;
+}
+
+/* si je change la couleur dans nav__item les elements ne changeront pas de couleur car ils ont leur propre couleur donc je fait : */
+
+.nav__item > a {
+  color: #d2d0db;
+  transition: color 0.3s;
+}
+.nav__item > a:hover {
+  color: #fff;
+}
+
+.nav__toggler {
+  opacity: 0.5;
+  transition: box-shadow 0.15s;
+  cursor: pointer;
+}
+
+.nav.collapsible--expanded .nav_toggler /* ce code veut dire , si on a .nav et .collapsible--expanded true, cest a dire qu'un element a ces deux classes, alors nav__toggler aura une opacity de 1*/ {
+  opacity: 1;
+  box-shadow: 0 0 0 3px #666;
+  border-radius: 5px;
+}
+
+.nav__brand {
+  transform: translateY(5px); /* pour decaler le logo du haut vers le bas */
+}
+
+@media screen and (min-width: 768px) {
+  .nav__toggler {
+    display: none;
+  }
+  .nav__list {
+    width: auto;
+    display: flex;
+    font-size: 1.6rem;
+    /* pour laissez tout le temps la nav list visible */
+    max-height: 100%;
+    opacity: 1;
+  }
+
+  .nav__item {
+    border: 0;
+  }
+}
+
+/* Hero ( Banner ) */
+.hero {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
+}
+
+.hero__tagline {
+  font-size: 2rem;
+  color: #b9c3cf;
+  letter-spacing: 1px;
+  margin: 2rem 0 5rem;
+}
+
+.hero__image {
+  width: 100%;
+}
+
+/* maintenant après avoir fait  les mobiles versions, je prends en compte les screens plus grande je veux par exemple que mon texte soit collé a gauche */
+@media screen and (min-width: 768px) {
+  /* enfin je veux enlever lespace top de mon main */
+  .hero {
+    padding-top: 0;
+  }
+
+  .hero__content {
+    text-align: left;
+    /* maintenant je veux changer le vertical alignement de cet element qui est a l'interieur d'un grid (hero__content)*/
+    align-self: center;
+  }
+}
+
+/* Domain Block */
+
+/* et ici nous fesons une nouvelle regle qui dit dans ce block notre input group aura une box shadow de */
+
+.block-domain .input-group {
+  box-shadow: 0 0 30px 20px #e6ebee;
+  /* nous avons donc notre shadow et on enleve maintenant la border */
+  border: 0;
+  /* maintenant nous mettons plus despace entre notre barre input group et notre paragraphe */
+  margin: 4rem /* vertical */ auto; /* horizontal auto meme chose que dans block-domain__prices margin*/
+  max-width: 670px;
+}
+
+.block-domain__prices {
+  color: var(--color-headings);
+  display: grid;
+  /* sur mobiles on a 3 columns et 2 rows; */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 6rem 6rem;
+  font-size: 2rem;
+  font-weight: 600;
+  /* et enfin nos elements sont aligné au centre et pas a gauche sur notre page modele donc on fait justify-items : center */
+  justify-items: center;
+  max-width: 700px; /* car nos elements ne prennent pas toutes la place */
+  /* et le margin pour que nos elements soient bien alignés au milieux */
+  margin: 0 auto;
+}
+
+/* on veut maintenant que nos prices list soit sur une seule ligne sur les plus grandes pages */
+@media screen and (min-width: 768px) {
+  .block-domain__prices {
+    /* on peut grid-template-columns: repeat(6, 1fr); mais si on veut ajouté ou supprimer un prices on devras venir ici donc a la place on peut faire et sa creera le nombre de colonne quil faut pour nos prix automatiquement minmax prends une valeur minimum et une maximum on peut mettre 10rem a la place de 100px cest pareil sur un font size 62.5% roots */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+
+/* Plans Block */
+
+/*.planoof {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10rem;
+}
+
+.cardbod {
+  background-color: white;
+  width: 30vw;
+}
+
+.carr:hover .carrh {
+  background-color: blue;
+}
+
+.carr:hover .btnh {
+  background-color: blue;
+  color: white;
+}*/
+
+.block-plans .grid {
+  gap: 8rem /* pour les rows (mobile version)*/ 4rem
+    /* toujours 4 rem de gap pour les colonnes */;
+}
+
+/* pour les tablettes les plans ne sont pas de la bonne dimenssion je peux faire une media queries pour ca mais on va faire autrement */
+.block-plans .card {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* et pour la couleur du badge dans le primary plans, allons dans la section card */
+/* puis modifier notre popular card dans la section Plans pour la rendre plus grosse */
+/* et enfin toujours dans notre plans section faire les modification pour notre hover mode */
+/* enfin après avoir modifier la transition transform de notre plans block et les effets de scale nous allons donner du gap car sur les version telephone ou plus petit bureau
+le gap n'est pas assez grand entre les elements dans la colonnes dans .block-plans .grid juste en haut :) */
+
+/* Features Block Alex */
+/* Alex 
+.h3__features {
+  font-size: 1.5rem;
+
+  font-weight: 700;
+}
+
+.p__features {
+  font-size: 1rem;
+
+  color: var(--color-body);
+}
+
+.firstcolon {
+  padding-left: 8rem;
+  padding-top: 4rem;
+}
+
+.h5__features {
+  font-size: 1.2rem;
+  padding-top: 2rem;
+}
+*/
+
+/* Features Block Mosh */
+
+.feature {
+  gap: 4rem 2rem; /* 4rem pour rows et 2rem pour colonnes */
+  margin: 12rem 0;
+}
+
+.feature:first-of-type {
+  margin-top: 6rem;
+}
+
+.feature__heading {
+  margin: 1rem 0; /* pour mettre un margin plus petit sur le h3 1rem vertical et 0 horizontal */
+}
+
+.feature__image {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .feature:nth-of-type(even) .feature_content {
+    order: 2;
+  }
+}
+/* Showcase Block */
+.block-showcase__image > img {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .block-showcase .grid {
+    grid-template-columns: 50% 50%;
+  }
+
+  .block-showcase__image {
+    justify-self: end;
+  }
+
+  .block-showcase__image > img {
+    width: auto;
+    max-width: 700px;
+  }
+}
+
+/* My Footer CSS Selon Alex 
+.grid--1x5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.footer__header {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.copy__footer {
+  font-size: 1rem;
+}
+
+.footer__block {
+  background-color: #000c;
+  color: #7b858b;
+}
+
+.list__footer li {
+  font-size: 1rem;
+}
+*/
+
+/* Footer */
+.footer {
+  background: #232323;
+}
+
+.footer a {
+  color: #777;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+/* en dessous je vais rajouté un padding de 2rem pour lespace entre les sections, puis une border bottom de 1px pour que
+ cela fasse un trait en dessous des section pour les separer */
+.footer__section {
+  padding: 2rem;
+  border-bottom: 1px solid #393939;
+}
+
+.footer__section .list {
+  margin: 0;
+}
+/* en dessous j'aurais pu selectionné la classe .footer .collapsible__heading pour modifier le contenue css, mais imaginons que je veuille me separer de ce collapsible__heading, du coup je prefere créer une classe speciale pour mon footer collapsible heading */
+.footer__heading {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.footer__brand {
+  margin-top: 5rem;
+  text-align: center;
+}
+/* en dessous pour que le logo soit de la taille de son container et quil puisse etre responsive et se dimenssionné suivant la resolution 
+on peut aussi appliqué le parametre img { width: 100%; }
+*/
+.footer__brand img {
+  width: 100%;
+  max-width: 230px;
+}
+
+.footer__copyright {
+  font-size: 2.1rem;
+  color: #fff;
+  opacity: 0.3;
+}
+
+/* je passe ici a la version desktop tablettes ++ */
+@media screen and (min-width: 768px) {
+  /* ici j'ai donner une classe a ma div container (footer_sections) pour lutiliser specialement dans mon media queries :) */
+  .footer__sections {
+    /* jutilise autofit qui sutilise avec minmax pour que lespace soit parfaitement utiliser au cas ou par exemple on veuille ajouté une section */
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+
+  /* dans notre footer si nous avons un collapsible__chevron il doit etre caché */
+  .footer .collapsible__chevron {
+    display: none;
+  }
+
+  /* et après avoir caché le chevron, je vais ciblé le contenu de mes collapsible pour le montrer sur les desktop :) */
+  .footer .collapsible__content {
+    opacity: 1;
+    max-height: 100%;
+  }
+  /* pour deplacer mon logo au debut de ma div */
+  .footer__brand {
+    order: -1;
+    /* on enleve le margin quon avait mis a 5rem pour les mobiles version */
+    margin-top: 1rem;
+  }
+
+  .footer__copyright {
+    font-size: 1.5rem;
+  }
+
+  .footer__section {
+    border: 0;
+  }
+
+  .footer__heading {
+    font-size: 1.6rem;
+  }
+}
+/* Alex */
+.collapsible__content li {
+  font-size: 1.5rem;
+}
+
+/* Animations */
